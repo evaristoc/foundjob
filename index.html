@@ -4,17 +4,25 @@
   <head>
     <title>Test Job Seekers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script
 			  src="https://code.jquery.com/jquery-2.2.4.js"
 			  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
 			  crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
 
   <body>
   <div class="quote"><span class = "saying"></span><br><span class = "author"></span></div>
-  <div class='entre'>
-  <button class='entre-b' id='profiles'>profiles</button>
-  <button class='entre-b' id='stats'>stats</button>
+  <div class='container entre'>
+    <div class='row'>
+<div class='col-sm-6'>
+  <button class='entre-b' id='profiles' style='position:absolute;right:0px;'>profiles</button>
+</div>
+<div class='col-sm-6'>
+  <button class='entre-b' id='stats' style='position:absolute;left:0px;'>stats</button>
+</div>
+</div>
 </div>
 
   <!-- References:
@@ -57,10 +65,11 @@
 
 .entre-b {
   font-family: 'Cardo', serif;
-  font-size: 1.5em;
-  width: 300px;
+  font-size: 1em;
+  width: 200px;
   height: auto;
-  margin: 0 auto;
+  margin: 0 20 20 10;
+  padding:20 10 10 20;
 }
 
 .author {
@@ -103,6 +112,16 @@ $( document ).ready(function() {
   setInterval(getQuote, 4000);
 });
 
+// Show lightbox
+function show_lightbox(){
+  $('.quote').show();
+  //$('.lightbox_container').show();
+}
+// Hide lightbox
+function hide_lightbox(){
+  $('.quote').hide();
+  //$('.lightbox_container').hide();
+}
 
 
 
