@@ -17,13 +17,15 @@
   <div class='container entre'>
     <div class='row'>
 <div class='col-sm-6'>
-  <button class='entre-b' id='profiles' style='position:absolute;right:0px;'>profiles</button>
+  <button class='entre-b' id='profiles-b' style='position:absolute;right:0px;'>profiles</button>
 </div>
 <div class='col-sm-6'>
-  <button class='entre-b' id='stats' style='position:absolute;left:0px;'>stats</button>
+  <button class='entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button>
 </div>
 </div>
+<div class='row hidden' id='profiles'>This is the profile selection page</div>
 </div>
+
 
   <!-- References:
   --- https://codepen.io/chuah48263/pen/bdBqev
@@ -76,6 +78,9 @@
   font-style: italic;
 }
 
+.hidden{
+display:none;
+}
 
 * {
   -webkit-box-sizing: border-box;
@@ -113,17 +118,39 @@ $( document ).ready(function() {
 });
 
 // Show lightbox
-function show_lightbox(){
+function show_quote(){
   $('.quote').show();
   //$('.lightbox_container').show();
 }
 // Hide lightbox
-function hide_lightbox(){
+function hide_quote(){
   $('.quote').hide();
   //$('.lightbox_container').hide();
 }
 
+// Show lightbox
+function show_profiles(){
+  //$('#profiles').css('display', 'block');
+  //$('#profiles').show();
+  //$('.lightbox_container').show();
+  console.log('entering show profiles');
+  $('#profiles').removeClass('hidden');
+}
+// Hide lightbox
+function hide_profiles(){
+  $('#profiles').hide();
+  //$('.lightbox_container').hide();
+}
 
+$('#profiles-b').on('click', function(){
+  hide_quote();
+  show_profiles();
+  console.log($('#profiles'))
+  //$('#profiles').css('display', 'inline-block');
+
+
+
+})
 
 
 </script>
