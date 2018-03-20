@@ -133,11 +133,14 @@ $( document ).ready(function() {
 
 // Show lightbox
 function show_quote(){
+  $('.quote').fadeIn(4000);
   $('.quote').show();
+  //$('.quote').delay("slow").fadeIn();
   //$('.lightbox_container').show();
 }
 // Hide lightbox
 function hide_quote(){
+  $('.quote').fadeOut("slow");
   $('.quote').hide();
   //$('.lightbox_container').hide();
 }
@@ -225,7 +228,11 @@ var xValue = function(d) { return d.end;}, // data -> value
 d3scatter();
 
 $('#profiles-b').on('click', function(){
+  if ($('.quote').css('display') != 'none'){
   hide_quote();
+  }else{
+	show_quote();
+  }
   
 //  show_profiles();
   console.log($('#profiles'))
