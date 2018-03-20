@@ -15,7 +15,7 @@
   <body>
   <div class="quote"><span class = "saying"></span><br><span class = "author"></span></div>
   <div class='container entre'>
-    <div class='row'>
+    <div class='row menu-btns'>
 <div class='col-sm-6'>
   <button type='button' class='btn entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b' style='position:absolute;right:0px;'>profiles</button>
 </div>
@@ -23,9 +23,11 @@
   <button type='button' class='btn entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button>
 </div>
 </div>
-<div class='row'>
+</div>
+<div class=container>
+<div class='row menu-int'>
   <div class='col-sm-12 collapse out' id='profiles'>
-    <p>This is the profile selection page</p>
+    <svg height=300 width=500><circle cy=150 cx=250 r=10></circle></svg>
   </div>
 </div>
 </div>
@@ -80,6 +82,11 @@
 
 .author {
   font-style: italic;
+}
+
+.menu-int{
+  margin:150;
+  text-align: center;
 }
 
 /*.hidden{
@@ -148,12 +155,9 @@ function hide_profiles(){
 
 $('#profiles-b').on('click', function(){
   hide_quote();
-  show_profiles();
+//  show_profiles();
   console.log($('#profiles'))
   //$('#profiles').css('display', 'inline-block');
-
-
-
 })
 
 
