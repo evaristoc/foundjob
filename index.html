@@ -17,13 +17,17 @@
   <div class='container entre'>
     <div class='row'>
 <div class='col-sm-6'>
-  <button class='entre-b' id='profiles-b' style='position:absolute;right:0px;'>profiles</button>
+  <button type='button' class='btn entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b' style='position:absolute;right:0px;'>profiles</button>
 </div>
 <div class='col-sm-6'>
-  <button class='entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button>
+  <button type='button' class='btn entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button>
 </div>
 </div>
-<div class='row hidden' id='profiles'>This is the profile selection page</div>
+<div class='row'>
+  <div class='col-sm-12 collapse out' id='profiles'>
+    <p>This is the profile selection page</p>
+  </div>
+</div>
 </div>
 
 
@@ -78,9 +82,9 @@
   font-style: italic;
 }
 
-.hidden{
+/*.hidden{
 display:none;
-}
+}*/
 
 * {
   -webkit-box-sizing: border-box;
@@ -133,8 +137,8 @@ function show_profiles(){
   //$('#profiles').css('display', 'block');
   //$('#profiles').show();
   //$('.lightbox_container').show();
-  console.log('entering show profiles');
-  $('#profiles').removeClass('hidden');
+  //console.log('entering show profiles');
+  //$('#profiles').removeClass('hidden');
 }
 // Hide lightbox
 function hide_profiles(){
