@@ -15,23 +15,19 @@
 
   <body>
   <div class="quote"><span class = "saying"></span><br><span class = "author"></span></div>
+  
   <div class='container entre'>
     <div class='row menu-btns'>
-<div class='col-sm-6'>
-  <button type='button' class='btn entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b' style='position:absolute;right:0px;'>profiles</button>
-</div>
-<div class='col-sm-6'>
-  <button type='button' class='btn entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button>
-</div>
-</div>
-</div>
-<div class=container>
-<div class='row menu-int'>
-  <div class='col-sm-12 collapse out' id='profiles'>
-    <!--<svg height=300 width=500><circle cy=150 cx=250 r=10></circle></svg>-->
+	  <div class='col-sm-6'><button type='button' class='btn entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b' style='position:absolute;right:0px;'>profiles</button></div>
+	  <div class='col-sm-6'><button type='button' class='btn entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button></div>
   </div>
+<div class='collapse out menu-int' id='profiles'>
+<div class='row'><div class='col-l-12' id='chart'><svg></svg></svg></div></div>
+<div class='row'><div class='col-l-12' id='breafing'></div></div>
 </div>
-</div>
+  </div>
+	
+    <!--<svg height=300 width=500><circle cy=150 cx=250 r=10></circle></svg>--
 
 
   <!-- References:
@@ -86,7 +82,7 @@
 }
 
 .menu-int{
-  margin:150;
+  margin-top: 200px;
   text-align: center;
 }
 
@@ -164,17 +160,17 @@ function hide_profiles(){
 function d3scatter(){
   var margin = {top: 20, right: 10, bottom: 30, left: 10},
     width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 100 - margin.top - margin.bottom;
   
 // add the graph canvas to the body of the webpage
-var svg = d3.select("#profiles").append("svg")
+var svg = d3.select("#chart").select("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
 // add the tooltip area to the webpage
-var tooltip = d3.select("#profiles").append("div")
+var tooltip = d3.select("#chart").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);	
 
@@ -205,17 +201,20 @@ var xValue = function(d) { return d.end;}, // data -> value
       .attr("class", "dot")
       .attr("r", 3.5)
       .attr("cx", xMap)
-	  .attr("cy", 20)
+	  .attr("cy", 1)
       .on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
           tooltip.html(d["user"])
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px");
+               .style("left", (d3.event.pageX - 10) + "px")
+               .style("top", (d3.event.pageY - 50) + "px");
+			   
+		  $('#breafing').html("<div id='addedinfo'><p>this would be an html with the data of the person "+d['user']+"</p></div>")
       })
       .on("mouseout", function(d) {
-          tooltip.transition()
+          $('#addedinfo').remove();
+		  tooltip.transition()
                .duration(500)
                .style("opacity", 0);
       });
@@ -223,9 +222,11 @@ var xValue = function(d) { return d.end;}, // data -> value
 
 }
 
+d3scatter();
+
 $('#profiles-b').on('click', function(){
   hide_quote();
-  d3scatter();
+  
 //  show_profiles();
   console.log($('#profiles'))
   //$('#profiles').css('display', 'inline-block');
