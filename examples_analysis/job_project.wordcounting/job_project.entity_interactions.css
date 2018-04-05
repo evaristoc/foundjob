@@ -1,0 +1,27 @@
+    body{
+        background:lightgreen;
+    }
+    
+    .column1{
+        float: left;
+        width: 700;
+	padding:50;
+    }
+    
+        .column2{
+        float: left;
+        width: 250;
+    }
+
+    
+    /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*mark {
+    background-color: yellow;
+    color: black;
+}*/
