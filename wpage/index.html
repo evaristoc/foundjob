@@ -14,19 +14,12 @@
   </head>
 
   <body>
-  <div class="quote"><span class = "saying"></span><br><span class = "author"></span>
-  </div>
-  
+ 
   <div class='container entre'>
-    <div class='row menu-btns'>
-	  <div class='col-sm-12 text-center'>
-		<button type='button' class='btn btn-primary entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b'>profiles</button>
-	  </div>
-  </div>
-<div class='collapse out menu-int' id='profiles'>
+<div class='menu-int' id='profiles'>
 <div class='row'>
   <div class='col-l-12' id='chart'>
-	<p>WORK IN PROGRESS</p>
+	<p>THIS IS A TEMPORARY VIEW</p>
   </div>
 </div>
 <div class='row'>
@@ -94,7 +87,6 @@
 }
 
 .menu-int{
-  margin-top: 200px;
   text-align: center;
 }
 
@@ -196,8 +188,6 @@ Array.prototype.randomElement = function () {
 $( document ).ready(function() {
    
    
-   
-   getQuote();
    makeTable();
    function makeTable() {
 	  tablehtml = ''
@@ -219,45 +209,6 @@ $( document ).ready(function() {
   setInterval(getQuote, 4000);
 });
 
-// Show lightbox
-function show_quote(){
-  $('.quote').fadeIn(4000);
-  $('.quote').show();
-  //$('.quote').delay("slow").fadeIn();
-  //$('.lightbox_container').show();
-}
-// Hide lightbox
-function hide_quote(){
-  $('.quote').fadeOut(4000);
-  //$('.quote').hide();
-  //$('.lightbox_container').hide();
-}
-
-// Show lightbox
-function show_profiles(){
-  //$('#profiles').css('display', 'block');
-  //$('#profiles').show();
-  //$('.lightbox_container').show();
-  //console.log('entering show profiles');
-  //$('#profiles').removeClass('hidden');
-}
-// Hide lightbox
-function hide_profiles(){
-  $('#profiles').hide();
-  //$('.lightbox_container').hide();
-}
-
- $('#profiles-b').on('click', function(){
-  if ($('.quote').css('display') != 'none'){
-  hide_quote();
-  $('#profiles-b').html('quotes');
-  }else{
-	show_quote();
-	$('#profiles-b').html('profiles');
-  }
-  
-  
-})
 
 
 </script>
