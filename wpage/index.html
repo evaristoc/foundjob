@@ -14,17 +14,27 @@
   </head>
 
   <body>
-  <div class="quote"><span class = "saying"></span><br><span class = "author"></span></div>
+  <div class="quote"><span class = "saying"></span><br><span class = "author"></span>
+  </div>
   
   <div class='container entre'>
     <div class='row menu-btns'>
-	  <div class='col-sm-6'><button type='button' class='btn entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b' style='position:absolute;right:0px;'>profiles</button></div>
-	  <div class='col-sm-6'><button type='button' class='btn entre-b' id='stats-b' style='position:absolute;left:0px;'>stats</button></div>
+	  <div class='col-sm-12 text-center'>
+		<button type='button' class='btn btn-primary entre-b' data-toggle='collapse' data-target='#profiles' id='profiles-b'>profiles</button>
+	  </div>
   </div>
 <div class='collapse out menu-int' id='profiles'>
-<div class='row'><div class='col-l-12' id='chart'><svg></svg><p>WORK IN PROGRESS</p></div></div>
-<div class='row'><div class='col-l-12' id='breafing'></div></div>
-  <div><table></table></div>
+<div class='row'>
+  <div class='col-l-12' id='chart'>
+	<p>WORK IN PROGRESS</p>
+  </div>
+</div>
+<div class='row'>
+  <div>
+	<table>
+	  
+	</table>
+  </div>
 </div>
 
   </div>
@@ -192,7 +202,7 @@ $( document ).ready(function() {
    function makeTable() {
 	  tablehtml = ''
 	  for(var i=0; i < temptable.length;i++){
-		tablehtml = tablehtml+'<tr><td>'+temptable[i]['user']+'</td><td><a href='+temptable[i]['source']+'>link</a></td>';
+		tablehtml = tablehtml+'<tr><td>'+temptable[i]['user']+'</td><td><table><tbody><tr data-toggle="collapse" data-target="#accordion'+i+'" class="clickable collapse-row collapsed"><td><button class="btn btn-primary" type="button">LINK</button></td><td class="collapse" id="accordion'+i+'"><a href='+temptable[i]['source']+'>'+temptable[i]['source']+'</a></td></tr></tbody></table></td>';
 	  }
 	  $('table').html(tablehtml);
 	}
@@ -218,8 +228,8 @@ function show_quote(){
 }
 // Hide lightbox
 function hide_quote(){
-  $('.quote').fadeOut("slow");
-  $('.quote').hide();
+  $('.quote').fadeOut(4000);
+  //$('.quote').hide();
   //$('.lightbox_container').hide();
 }
 
@@ -237,82 +247,15 @@ function hide_profiles(){
   //$('.lightbox_container').hide();
 }
 
-
-function d3scatter(){
-  var margin = {top: 20, right: 10, bottom: 30, left: 10},
-    width = 600 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
-  
-// add the graph canvas to the body of the webpage
-var svg = d3.select("#chart").select("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-	
-// add the tooltip area to the webpage
-var tooltip = d3.select("#chart").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);	
-
-d3.json("jobproject_tocharts.json", function(error, data) {
-
-// setup x 
-var xValue = function(d) { return d.end;}, // data -> value
-    xScale = d3.scaleBand().domain(data.map(function(entry){return entry.end;})).range([0, width]), // value -> display
-    xMap = function(d) { return xScale(xValue(d));}
-
-  // x-axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(xScale))
-    .append("text")
-      .attr("class", "label")
-      .attr("x", width)
-      .attr("y", -6)
-      .style("text-anchor", "end")
-      //.text("Calories");
-
-
-  // draw dots
-  svg.selectAll(".dot")
-      .data(data)
-    .enter().append("circle")
-      .attr("class", "dot")
-      .attr("r", 3.5)
-      .attr("cx", xMap)
-	  .attr("cy", 1)
-      .on("mouseover", function(d) {
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d["user"])
-               .style("left", (d3.event.pageX - 10) + "px")
-               .style("top", (d3.event.pageY - 50) + "px");
-			   
-		  $('#breafing').html("<div id='addedinfo'><p>this would be an html with the data of the person "+d['user']+"</p></div>")
-      })
-      .on("mouseout", function(d) {
-          $('#addedinfo').remove();
-		  tooltip.transition()
-               .duration(500)
-               .style("opacity", 0);
-      });
-});
-
-}
-
-d3scatter();('#profiles-b').on('click', function(){
+ $('#profiles-b').on('click', function(){
   if ($('.quote').css('display') != 'none'){
   hide_quote();
+  $('#profiles-b').html('quotes');
   }else{
 	show_quote();
+	$('#profiles-b').html('profiles');
   }
   
-//  show_profiles();
-  console.log($('#profiles'))
-  //$('#profiles').css('display', 'inline-block');
   
 })
 
